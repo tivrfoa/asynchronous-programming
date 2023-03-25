@@ -17,7 +17,8 @@ int main() {
     printf("Type in your name:\n");
 
     while (1) {
-        if (poll(&mypoll, 1, 100) == 1) {
+        poll(&mypoll, 1, 100);
+        if (mypoll.revents & POLLIN) {
             read(0, name, sizeof(name));
             printf("Hello, %s\n", name);
             break;
